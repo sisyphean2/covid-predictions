@@ -53,6 +53,7 @@ export function MapContainer() {
     }
   };
 
+  // TODO handle failures, especially invalid dates, especially on conversion to weekly.
   useEffect(() => {
     requestedDates.forEach(date => fetchCovidData(date));
   }, [dailyWeekly, selectedDate]);
@@ -86,7 +87,7 @@ export function MapContainer() {
 
   return (
     <>
-      <h1>{dailyWeekly} covid cases ({totalPerCapita}) by state {displayDate}</h1>
+      <h2>{dailyWeekly} covid cases ({totalPerCapita}) by state {displayDate}</h2>
       <KeyboardDatePicker
         format="MM/DD/YYYY"
         maxDate={new Date(2021, 9, 13)}
@@ -105,6 +106,8 @@ export function MapContainer() {
       <button onClick={setDailyWeekly.bind(null, dailyWeeklyOpposite)}>{dailyWeeklyOpposite}</button>
       <button onClick={setTotalPerCapita.bind(null, totalPerCapitaOpposite)}>{totalPerCapitaOpposite}</button>
       <button onClick={runTimeLapse}>Run Time Lapse</button>
+      <br></br>
+      Data provided by the NYTimes, design and coding brought to you by <a href='www.briancato.com'>Brian Cato</a>
       <ComposableMap projection="geoAlbersUsa">
         <Geographies geography={localStatesTopoJsonUrl}>
           {({geographies}) => geographies.map(geo => {

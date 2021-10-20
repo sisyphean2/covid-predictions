@@ -1,56 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import DayjsUtils from '@date-io/dayjs';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+
 import './App.css';
+import { MapContainer } from './features/map-container/MapContainer';
+
+  // https://github.com/zcreativelabs/react-simple-maps
+  // Datamaps: https://github.com/markmarkoh/datamaps
+  // Cartomap: https://github.com/emeeks/d3-carto-map
+  // The whole geomap ecosystem appears to be buggy and unusable. Sample pages give 404. Unless my json is corrupt?
+  // Geomap AND D3plus geomap: https://github.com/yaph/d3-geomap AND https://github.com/d3plus/d3plus-geomap
+
+  // See https://github.com/topojson/us-atlas for topojson map files
+  // const worldMapUrl = 'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-10m.json';
+  // const americanStatesUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json';
+  // const americanCountiesUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json';
+  // const covidDataUrl = 'https://corona.lmao.ninja/v2/nyt/usa';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <MuiPickersUtilsProvider utils={DayjsUtils}>
+        <MapContainer />
+      </MuiPickersUtilsProvider>
     </div>
   );
 }
